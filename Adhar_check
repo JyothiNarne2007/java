@@ -1,0 +1,48 @@
+import java.util.*;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+class InvalidAdharNumberException extends RuntimeException
+{
+    public String getMessage()
+    {
+        return "check your input";
+    }
+}
+class SizeNotInRangeException extends RuntimeException
+{
+    public String getMessage()
+    {
+        return "check the number of number you hava entered";
+    }
+}
+class Adhar_check
+{
+    public static void main(String args [])
+    {
+        Scanner sc = new Scanner(System.in);
+        String i = sc.nextLine();
+        check(i);
+    }
+    public static void check(String i)
+    {
+        if(i.length()==12)
+        {
+        String regex = "4356"+".*[0-9]";
+        Pattern mypattern = Pattern.compile(regex);
+        Matcher mtch = mypattern.matcher(i);
+        if(mtch.matches())
+        {
+            System.out.println(i);
+            
+        }
+        else
+        {
+            throw new InvalidAdharNumberException();
+        }
+        }
+        else
+        {
+            throw new SizeNotInRangeException();
+        }
+    }
+}
